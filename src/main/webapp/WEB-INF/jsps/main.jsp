@@ -38,13 +38,7 @@
 	<shiro:notAuthenticated>
 		用户<shiro:principal/>还没有经过认证!
 	</shiro:notAuthenticated>
-	
-	<shiro:hasRole name="admin">
-		用户<shiro:principal/> 拥有admin访问权限!
-	</shiro:hasRole>
-	
-	
-	
+	${sessionScope.user}
 	<p>欢迎 <span>${subject.principal}!</span><a href="${pageContext.request.contextPath }/logout">退出</a></p>
 
 </body>

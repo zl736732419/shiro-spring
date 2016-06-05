@@ -1,11 +1,13 @@
 package com.zheng.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.Session;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -49,8 +51,15 @@ public class BaseController {
 		return SecurityUtils.getSubject();
 	}
 
+	@SuppressWarnings("unchecked")
 	protected User getUser() {
-		return (User) getSubject().getPrincipal();
+		
+		PrincipalCollection ps = getSubject().getPrincipals();
+		List<Object> list = ps.asList();
+		System.out.println(list);
+		
+		
+		return null;
 	}
 
 }

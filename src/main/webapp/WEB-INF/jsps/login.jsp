@@ -28,7 +28,10 @@
 			用户名：<input type="text" name="username">
 		</p>
 		<p>
-			密码：<input type="text" name="password">
+			密码：<input type="text" name="password"> 
+		</p>
+		<p>
+			记住我：<input type="checkbox" name="rememberMe" value="true"><!-- 如果设置value=true,那么默认的只是on/off 坑爹啊-->
 		</p>
 		<p>
 			<input type="submit" value="登录">

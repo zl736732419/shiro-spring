@@ -30,11 +30,11 @@
 		<property name="permissionDao" ref="permissionDao"></property>
 	</bean>
 	
-	<bean id="roleService" class="com.zheng.service.impl.RoleService">
+	<bean id="roleService" class="com.zheng.service.impl.RoleServiceImpl">
 		<property name="roleDao" ref="roleDao"></property>
 	</bean>
 	
-	<bean id="randomNumberGenerator" class="org.apache.shiro.crypto.RandomNumberGenerator"></bean>
+	<bean id="randomNumberGenerator" class="org.apache.shiro.crypto.SecureRandomNumberGenerator"></bean>
 	
 	<bean id="passwordHelper" class="com.zheng.utils.PasswordHelper">
 		<property name="algorithmName" value="md5"></property>
@@ -44,7 +44,7 @@
 	
 	<bean id="userService" class="com.zheng.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
-		<property name=""></property>
+		<property name="pwdHelper" ref="passwordHelper"></property>
 	</bean>
 	
 	

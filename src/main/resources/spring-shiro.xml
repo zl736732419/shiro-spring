@@ -113,6 +113,8 @@
 		<property name="port" value="8443"></property>
 	</bean>
 	
+	<bean id="sysUserFilter" class="com.zheng.filter.SysUserFilter"></bean>
+	
 	<!-- Shiro的Web过滤器 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
@@ -122,6 +124,7 @@
 		<property name="filters">
 			<util:map>
 				<entry key="authc" value-ref="formAuthenticationFilter" />
+				<entry key="sysUser" value-ref="sysUserFilter" />
 				<entry key="ssl" value-ref="sslFilter" />
 			</util:map>
 		</property>
@@ -131,7 +134,7 @@
 				/logout = logout
 				/unauthorized = anon
 				/authenticated = authc				
-				/main = user
+				/main = user, sysUser
 				/role = authc, roles[admin]
 				/** = user
 			</value>

@@ -115,6 +115,14 @@
 	
 	<bean id="sysUserFilter" class="com.zheng.filter.SysUserFilter"></bean>
 	
+	<bean id="kickoutFilter" class="com.zheng.filter.KickoutSessionControlFilter">
+		<property name="kickoutUrl" value="/login?kickout=1"></property>
+		<property name="kickoutAfter" value="true"></property>
+		<property name="maxSession" value="1"></property>
+		<property name="sessionManager" ref="sessionManager"></property>
+		<property name="cacheManager" ref="cacheManager"></property>
+	</bean>
+	
 	<!-- Shiro的Web过滤器 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
@@ -125,6 +133,7 @@
 			<util:map>
 				<entry key="authc" value-ref="formAuthenticationFilter" />
 				<entry key="sysUser" value-ref="sysUserFilter" />
+				<entry key="kickout" value-ref="kickoutFilter" />
 				<entry key="ssl" value-ref="sslFilter" />
 			</util:map>
 		</property>
@@ -134,9 +143,9 @@
 				/logout = logout
 				/unauthorized = anon
 				/authenticated = authc				
-				/main = user, sysUser
-				/role = authc, roles[admin]
-				/** = user
+				/main = kickout, user, sysUser
+				/role = kickout, authc, roles[admin]
+				/** = kickout, user
 			</value>
 		</property>
 	</bean>

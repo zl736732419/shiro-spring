@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -38,7 +39,10 @@
 		</p>
 	</form>
 	<p>
-		<span style="color:red">${error }</span>
+		<p style="color:red">${error }</p>
+		<p style="color:red">
+			<c:if test="${not empty param.kickout }">您已被踢出登录!</c:if>
+		</p>
 	</p>
 </body>
 </html>
